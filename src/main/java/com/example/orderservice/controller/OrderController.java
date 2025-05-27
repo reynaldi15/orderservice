@@ -2,6 +2,7 @@ package com.example.orderservice.controller;
 
 import com.example.orderservice.app.service.OrderService;
 import com.example.orderservice.dto.OrderRequest;
+import com.example.orderservice.dto.OrderResponse;
 import com.example.orderservice.model.Order;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,9 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderRequest request) {
-        Order order = new Order();
-        order.setCustomerName(request.getCustomerName());
-        order.setTotalAmount(request.getTotalAmount());
-
-        Order savedOrder = orderService.saveOrder(order);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
+    public ResponseEntity<OrderResponse> createOrder(@Valid @RequestBody OrderRequest request) {
+        OrderResponse response = orderService.saveOrder(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
 
