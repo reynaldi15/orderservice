@@ -8,8 +8,6 @@ OrderService adalah aplikasi **microservice** berbasis Spring Boot yang dibangun
 - AOP (Aspect-Oriented Programming)
 - Native SQL Query
 - Java Stream API
-- Pagination with DTO Wrapping
-- Clean Architecture
 
 ---
 
