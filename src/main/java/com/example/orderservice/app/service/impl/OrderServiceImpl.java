@@ -1,6 +1,8 @@
 package com.example.orderservice.app.service.impl;
 
 import com.example.orderservice.app.service.OrderService;
+import com.example.orderservice.dto.OrderRequest;
+import com.example.orderservice.dto.OrderResponse;
 import com.example.orderservice.model.Order;
 import com.example.orderservice.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +34,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order saveOrder(Order order) {
-        return repository.save(order);
+    public OrderResponse saveOrder(OrderRequest request) {
+        Order order = new Order();
+        order.setCustomerName(request.getCustomerName());
+        order.setTotalAmount(request.getTotalAmount());
+        order.setCreatedAt(LocalDateTime.now());
+
+        Order savedOrder = repository.save(order);
+
+        // Mapping ke DTO Response
+        OrderResponse response = new OrderResponse();
+        response.setId(savedOrder.getId());
+        response.setCustomerName(savedOrder.getCustomerName());
+        response.setTotalAmount(savedOrder.getTotalAmount());
+        response.setCreatedAt(savedOrder.getCreatedAt());
+
+        return response;
     }
 }
