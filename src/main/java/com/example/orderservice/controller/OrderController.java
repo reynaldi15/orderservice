@@ -1,11 +1,15 @@
 package com.example.orderservice.controller;
 
 import com.example.orderservice.app.service.OrderService;
+import com.example.orderservice.dto.OrderRequest;
 import com.example.orderservice.model.Order;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,8 +37,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderService.saveOrder(order);
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderRequest request) {
+        Order order = new Order();
+        order.setCustomerName(request.getCustomerName());
+        order.setTotalAmount(request.getTotalAmount());
+
+        Order savedOrder = orderService.saveOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedOrder);
     }
 }
 
