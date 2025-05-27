@@ -1,4 +1,4 @@
-# 📦 OrderService - Spring Boot Microservice
+# OrderService - Spring Boot Microservice
 
 OrderService adalah aplikasi **microservice** berbasis Spring Boot yang dibangun dengan:
 - Spring Boot 3.1.6
@@ -13,7 +13,7 @@ OrderService adalah aplikasi **microservice** berbasis Spring Boot yang dibangun
 
 ---
 
-## 🛠️ Fitur
+## Fitur
 
 - Tambah dan ambil data pesanan (Order).
 - Filter pesanan dengan nilai transaksi tinggi.
@@ -23,7 +23,7 @@ OrderService adalah aplikasi **microservice** berbasis Spring Boot yang dibangun
 
 ---
 
-## 🚀 Cara Menjalankan Aplikasi
+## Cara Menjalankan Aplikasi
 
 ### 1. Clone Repository
 ```bash
