@@ -50,3 +50,12 @@ spring.datasource.password=yourpassword
 atau
 menggunakan debug pada IDEA
 ```
+
+## Menjalankan dengan Docker
+
+### Clone Repo di branch dockerStyle
+### Jalankan Aplikasi
+```bash
+docker-compose build
+docker-compose down -v
+```
